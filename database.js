@@ -1,10 +1,11 @@
-const mongoose = require("mongoose");
+/* eslint-disable new-cap */
+const mongoose = require('mongoose');
 
 const NotesSchema = mongoose.Schema({
   title: String,
   description: String,
 });
 
-const Notes = mongoose.model("Notes", NotesSchema);
+const Notes = mongoose.model('Notes', NotesSchema);
 
 module.exports = Notes;

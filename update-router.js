@@ -1,15 +1,16 @@
-const Router = require("express").Router();
+/* eslint-disable new-cap */
+const Router = require('express').Router();
 
 let id = 0;
-Router.get("/:__id", (req, res, next) => {
+Router.get('/:__id', (req, res, next) => {
   id = req.params.__id;
   req.id = req.params.__id;
-  console.log("in get middleware");
+  console.log('in get middleware');
   next();
 });
 
-Router.post("/", (req, res, next) => {
-  console.log("in post middleware");
+Router.post('/', (req, res, next) => {
+  console.log('in post middleware');
   req.id = id;
   next();
 });
