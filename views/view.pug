@@ -1,0 +1,18 @@
+html
+link( href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet")
+link( href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" rel="stylesheet")
+style
+    include style.css
+body
+    main(main class="pa4 black-80")
+        div(class="mw5 mw7-ns center")
+            a(href='notes-add/', class="f6 link dim br2 ba ph3 pv2 mb2 dib green") Crear Nota
+            ul(class="list pl0")
+                each val,key in data
+                    li(class="pa3 pa4-ns bb b--black-10")
+                        b(class="db f3 mb1")=val.title
+                        span(class="f5 db lh-copy measure")=val.description
+
+                    div(class="ph3 mt4")
+                    a(href='delete/' + val._id, class="f6 link dim br2 ba ph3 pv2 mb2 mh1 dib red") Eliminar
+                    a(href='updatepage/' + val._id, class="f6 link dim br2 ba ph3 pv2 mb2 mh1 dib blue") Actualizar

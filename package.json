@@ -1,0 +1,31 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "cross-env NODE_ENV=test jest --testTimeout=5000 --detectOpenHandles",
+    "start": "node clusterServer.js",
+    "start:dev": "cross-env NODE_ENV=development node server.js",
+    "seed": "node seedNotes.js",
+    "lint": "eslint ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.10",
+    "promise": "^8.1.0",
+    "pug": "^3.0.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "^8.48.0",
+    "eslint-config-google": "^0.14.0",
+    "jest": "^29.6.4",
+    "supertest": "^6.3.3"
+  }
+}
