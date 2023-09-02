@@ -7,7 +7,8 @@ const Note = require('./database.js');
 
 // Conecta a tu base de datos MongoDB
 const {MONGO_DB_NAME,MONGO_DB_HOST,MONGO_DB_PORT, MONGO_DB_USR, MONGO_DB_PWD} = process.env;
-mongoose.connect(`mongodb://${MONGO_DB_USR}:${MONGO_DB_PWD}@${MONGO_DB_HOST}:${MONGO_DB_PORT}/${MONGO_DB_NAME}`, {
+const credentials = MONGO_DB_USR ? `${MONGO_DB_USR}:${MONGO_DB_PWD}@` : '';
+mongoose.connect(`mongodb://${credentials}${MONGO_DB_HOST}:${MONGO_DB_PORT}/${MONGO_DB_NAME}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
