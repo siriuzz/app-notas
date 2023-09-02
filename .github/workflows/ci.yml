@@ -12,8 +12,20 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    services:
+      mongodb:
+        image: mongo
+        ports:
+          - 27017:27017
     steps:
+    - name: Wait for MongoDB to start
+      run: |
+        while ! nc -z localhost 27017; do
+          echo "Waiting for MongoDB to start..."
+          sleep 1
+        done
+        echo "MongoDB is available."
+
     - name: Checkout code
       uses: actions/checkout@v2
 
