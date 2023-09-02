@@ -96,7 +96,6 @@ app.post('/api/note', (req, res, next) => {
   note.save((err, note) => {
     if (err) return next(err);
     res.status(201).json(note); // Include the created note in the response
-
   });
 });
 
