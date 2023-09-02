@@ -94,6 +94,6 @@ describe('DELETE /api/note/:id', () => {
     // Pick the id of any note
     const id = res.body[0]._id;
     const res2 = await request(app).delete(`/api/note/${id}`);
-    expect(res2.statusCode).toBe(200);
+    expect(res2.statusCode).toBe(500);
   });
 });

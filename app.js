@@ -95,7 +95,8 @@ app.post('/api/note', (req, res, next) => {
   const note = new Notes({title, description});
   note.save((err, note) => {
     if (err) return next(err);
-    res.status(201).json({});
+    res.status(201).json(note); // Include the created note in the response
+
   });
 });
 
@@ -105,14 +106,14 @@ app.get('/api/note/:id', (req, res, next) => {
   const {id} = req.params;
   Notes.findById(id, (err, note) => {
     if (err) return next(err);
-    res.status(201).json(note);
+    res.status(200).json(note);
   });
 });
 // Read all
 app.get('/api/note', (req, res, next) => {
   Notes.find({}, (err, notes) => {
     if (err) return next(err);
-    res.status(201).json(notes);
+    res.status(200).json(notes);
   });
 });
 
