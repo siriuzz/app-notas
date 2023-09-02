@@ -1,4 +1,5 @@
 // Cargar los datos de prueba en la base de datos
+  /* eslint-disable max-len */
 const mongoose = require('mongoose');
 require('dotenv').config();
 const fs = require('fs');
