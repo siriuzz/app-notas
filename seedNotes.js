@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 const fs = require('fs');
-const Note = require('./database.js'); // Importa el modelo de datos si lo tienes definido en otro archivo
+const Note = require('./database.js');
 
 // Conecta a tu base de datos MongoDB
 const {MONGO_DB_NAME} = process.env; 
