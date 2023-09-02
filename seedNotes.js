@@ -1,12 +1,12 @@
 // Cargar los datos de prueba en la base de datos
-  /* eslint-disable max-len */
+/* eslint-disable max-len */
 const mongoose = require('mongoose');
 require('dotenv').config();
 const fs = require('fs');
 const Note = require('./database.js');
 
 // Conecta a tu base de datos MongoDB
-const {MONGO_DB_NAME,MONGO_DB_HOST,MONGO_DB_PORT, MONGO_DB_USR, MONGO_DB_PWD} = process.env;
+const {MONGO_DB_NAME, MONGO_DB_HOST, MONGO_DB_PORT, MONGO_DB_USR, MONGO_DB_PWD} = process.env;
 const credentials = MONGO_DB_USR ? `${MONGO_DB_USR}:${MONGO_DB_PWD}@` : '';
 mongoose.connect(`mongodb://${credentials}${MONGO_DB_HOST}:${MONGO_DB_PORT}/${MONGO_DB_NAME}`, {
   useNewUrlParser: true,
