@@ -5,10 +5,11 @@
   "main": "server.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --testTimeout=5000 --detectOpenHandles",
-    "start": "node clusterServer.js",
+    "start": "node server.js",
+    "cluster": "node clusterServer.js", 
     "start:dev": "cross-env NODE_ENV=development node server.js",
     "seed": "node seedNotes.js",
-    "lint": "eslint --fix ."
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
