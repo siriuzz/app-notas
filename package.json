@@ -6,7 +6,7 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --testTimeout=5000 --detectOpenHandles",
     "start": "node server.js",
-    "cluster": "node clusterServer.js", 
+    "cluster": "node clusterServer.js",
     "start:dev": "cross-env NODE_ENV=development node server.js",
     "seed": "node seedNotes.js",
     "lint": "eslint ."
@@ -15,6 +15,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@opentelemetry/auto-instrumentations-node": "^0.39.2",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.43.0",
+    "@opentelemetry/sdk-node": "^0.43.0",
     "body-parser": "^1.19.0",
     "dotenv": "^16.3.1",
     "express": "^4.17.1",
