@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const request = require('supertest');
-const app = require('../app');
+const app = require('../app.js');
 
 require('dotenv').config();
 
-const {MONGO_DB_USR, MONGO_DB_PWD, MONGO_DB_HOST, MONGO_DB_PORT} =
+const { MONGO_DB_USR, MONGO_DB_PWD, MONGO_DB_HOST, MONGO_DB_PORT } =
   process.env;
 const credentials = MONGO_DB_USR ? `${MONGO_DB_USR}:${MONGO_DB_PWD}@` : '';
 const mongoURI = `mongodb://${credentials}${MONGO_DB_HOST}:${MONGO_DB_PORT}/`;
-
+/* eslint-disable */
 /* Connecting to the database before each test. */
 beforeAll(async () => {
   await mongoose.connect(mongoURI);
@@ -75,12 +75,12 @@ describe('PUT /api/note/:id', () => {
     expect(res.statusCode).toBe(200);
     // Pick the id of any note
     /* eslint-disable no-unused-vars*/
-    const {_id, title, description} = res.body[0];
+    const { _id, title, description } = res.body[0];
     // Let's generate a random title
     const newTitle = Math.random().toString(36).substring(7);
     const res2 = await request(app)
-        .put(`/api/note/${_id}`)
-        .send({title: newTitle, description});
+      .put(`/api/note/${_id}`)
+      .send({ title: newTitle, description });
     expect(res2.statusCode).toBe(200);
     expect(res2.body).toHaveProperty('title');
     expect(res2.body.title).toBe(newTitle);

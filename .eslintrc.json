@@ -4,6 +4,17 @@
     "es2021": true,
     "node": true
   },
+  "overrides": [
+    {
+      "files": ["*-test.js","*.spec.js","*.js"],
+      "rules": {
+        "no-unused-expressions": "off",
+        "quotes":"off",
+        "max-len":"off",
+        "object-curly-spacing":"off"
+      }
+    }
+  ],
   "extends": "google",
   "parserOptions": {
     "ecmaVersion": "latest"
