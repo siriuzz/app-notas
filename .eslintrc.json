@@ -10,7 +10,7 @@
       "rules": {
         "no-unused-expressions": "off",
         "quotes":"off",
-        "max-len":"off",
+        "max-len":"off"
       }
     }
   ],
