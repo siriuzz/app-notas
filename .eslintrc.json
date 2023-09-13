@@ -10,7 +10,8 @@
       "rules": {
         "no-unused-expressions": "off",
         "quotes":"off",
-        "max-len":"off"
+        "max-len":"off",
+        "object-curly-spacing":"off"
       }
     }
   ],

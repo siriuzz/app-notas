@@ -8,7 +8,7 @@ const { MONGO_DB_USR, MONGO_DB_PWD, MONGO_DB_HOST, MONGO_DB_PORT } =
   process.env;
 const credentials = MONGO_DB_USR ? `${MONGO_DB_USR}:${MONGO_DB_PWD}@` : '';
 const mongoURI = `mongodb://${credentials}${MONGO_DB_HOST}:${MONGO_DB_PORT}/`;
-
+/* eslint-disable */
 /* Connecting to the database before each test. */
 beforeAll(async () => {
   await mongoose.connect(mongoURI);
