@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const app = require('./app');
 
 const port = process.env.PORT || 3000;
-console.log(process.env);
-/* eslint-disable max-len */
+
+/* eslint-disable */
 const { MONGO_DB_USR, MONGO_DB_PWD, MONGO_DB_HOST, MONGO_DB_PORT, MONGO_DB_NAME } =
   process.env;
 const credentials = MONGO_DB_USR ? `${MONGO_DB_USR}:${MONGO_DB_PWD}@` : '';
