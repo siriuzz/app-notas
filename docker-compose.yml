@@ -1,17 +1,29 @@
 version: '3'
 services:
   web:
+    environment:
+      - MONGO_DB_HOST=mongo
     build: .
     volumes:
       - ./:/app
     ports:
       - "3000:3000"
     command: npm run dev
-    links:
-      - mongo
+
     depends_on:
       - mongo
   mongo:
     image: mongo
     ports:
       - "27017:27017"
+
+  jaeger: 
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - "5775:5775/udp"
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+      - "16686:16686"
+      - "14268:14268"
+      - "9411:9411"
