@@ -39,21 +39,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-
   const span = tracer.startSpan(req.path);
-  // span.addEvent('request-started', { path: req.path });
-  // //   "client": req.headers[user - agent],
-  // // "ip": req.ip,
-  // // "params": req.params,
-  // // "body": req.body
-  // req.span = span;
-
   // Call next middleware or route handler
   span.addEvent('error', { ip: req.ip });
-
-
-  next();
-
+  return next();
 
 });
 
@@ -74,10 +63,7 @@ app
   .route('/notes-add')
   .get((req, res, next) => {
     const span = tracer.startSpan('add-note');
-    span.addEvent("Information", {
-      "web-browser": req.headers['user-agent'],
-      "ip": req.ip, "params": req.params, "body": req.body
-    });
+    info(span, req);
     res.render('notes-add');
     span.end();
   })
@@ -94,7 +80,6 @@ app
     Note.save((err, product) => {
       if (err) console.log(err);
       console.log(product);
-      span.addEvent('create-note', { data: product });
     });
     res.redirect('/index');
     next();
@@ -178,8 +163,6 @@ app.post('/api/note', (req, res, next) => {
     if (err) return next(err);
     res.status(201).json(note); // Include the created note in the response
   });
-  next();
-
   span.end();
 });
 
@@ -192,7 +175,7 @@ app.get('/api/note/:id', (req, res, next) => {
     if (err) return next(err);
     res.status(200).json(note);
   });
-  next();
+
 
   span.end();
 });
@@ -204,8 +187,6 @@ app.get('/api/note', (req, res, next) => {
     if (err) return next(err);
     res.status(200).json(notes);
   });
-
-  next();
   span.end();
 });
 
@@ -223,8 +204,6 @@ app.put('/api/note/:id', (req, res, next) => {
       res.status(200).json(req.body);
     },
   );
-  next();
-
   span.end();
 });
 // Delete
@@ -237,8 +216,6 @@ app.delete('/api/note/:id', (req, res, next) => {
       .status(500)
       .json({ deleted: true, document, message: 'Note deleted successfully' });
   });
-  next();
-
   span.end();
 });
 
