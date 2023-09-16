@@ -9,7 +9,7 @@ const updateRouter = require('./update-router');
 const app = express();
 
 const { NodeTracerProvider } = require('@opentelemetry/node');
-const { SimpleSpanProcessor } = require('@opentelemetry/sdk-trace-base');
+const { SimpleSpanProcessor } = require('@opentelemetry/tracing');
 const { JaegerExporter } = require('@opentelemetry/exporter-jaeger');
 const { trace } = require('@opentelemetry/api');
 
@@ -33,7 +33,6 @@ provider.register();
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
-
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
