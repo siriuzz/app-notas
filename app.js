@@ -14,13 +14,14 @@ const { JaegerExporter } = require('@opentelemetry/exporter-jaeger');
 const { trace } = require('@opentelemetry/api');
 
 // Set up the tracer provider and exporter
+const otlpEndpoint = process.env.OTEL_EXPORTER_OTLP_ENDPOINT || 'localhost:14268';
 const provider = new NodeTracerProvider();
 const exporter = new JaegerExporter({
-  serviceName: 'middleware',
   headers: {
 
   }, // an optional object containing custom headers to be sent with each request
   concurrencyLimit: 10, // an optional limit on pending requests
+  endpoint: `http://${otlpEndpoint}/api/traces`, // the Jaeger HTTP Thrift endpoint
 });
 const tracer = trace.getTracer('middleware');
 
@@ -89,7 +90,7 @@ app.get('/index', (req, res, next) => {
   const span = tracer.startSpan('view-notes');
   info(span, req);
   Notes.find({}).exec((err, document) => {
-    span.addEvent('view-notes', { data: document, "hola": "buenas" });
+    span.addEvent('view-notes', { data: document });
 
     if (err) console.log(err);
     const Data = [];
