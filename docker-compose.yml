@@ -3,23 +3,19 @@ services:
   web:
     environment:
       - MONGO_DB_HOST=mongo
-      - JAEGER_AGENT_HOST=jaeger
-      - JAEGER_SERVICE_NAME=app-notas
-      - JAEGER_AGENT_PORT=6831
-      - JAEGER_SAMPLER_MANAGER_HOST_PORT=jaeger:5778
     build: .
     volumes:
       - ./:/app
     ports:
       - "3000:3000"
-    command: npm run dev
+    command: node server.js
 
     depends_on:
       - mongo
       - jaeger
 
     networks:
-      - default
+      - app
 
     
   mongo:
@@ -27,7 +23,7 @@ services:
     ports:
       - "27017:27017"
     networks:
-      - default
+      - app
 
   jaeger: 
     image: jaegertracing/all-in-one:latest
@@ -41,7 +37,7 @@ services:
       - "14268:14268"
       - "9411:9411"
     networks:
-      - default
+      - app
 
   hotrod:
     image: jaegertracing/example-hotrod:latest
@@ -52,8 +48,8 @@ services:
       - JAEGER_AGENT_HOST=jaeger
       - JAEGER_AGENT_PORT=6831
     networks:
-      - default
+      - app
     depends_on:
       - jaeger
 networks:
-  default:
+  app:
